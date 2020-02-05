@@ -17,7 +17,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && stylelint **/*.scss"
+      "pre-commit": "pretty-quick --pattern '**/*.*(js|jsx|ts|tsx|html|json)' --staged && stylelint **/*.scss"
     }
   },
   "scripts": {
