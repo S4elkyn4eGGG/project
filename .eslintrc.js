@@ -11,6 +11,7 @@ module.exports = {
     ecmaFeatures: {},
   },
   rules: {
+    'react/display-name': 'off',
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
   },
