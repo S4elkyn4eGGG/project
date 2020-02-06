@@ -1,10 +1,10 @@
-@import '~styles/colors';
+@import '../../assets/styles/colors';
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: $color-digital-blue;
-  height: 50px;
+  background: $color-red;
+  height: 7.5vh;
   max-height: 5%;
 }
