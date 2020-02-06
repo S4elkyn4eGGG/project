@@ -1,7 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Routes from 'routes';
+import Header from 'components/Header';
 
 const App = (): JSX.Element => {
-  return <div>This is a Project</div>;
+  return (
+    <div>
+      <Router>
+        <Header />
+        <Routes />
+      </Router>
+    </div>
+  );
 };
 
 export default App;
