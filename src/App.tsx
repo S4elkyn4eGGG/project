@@ -6,12 +6,14 @@ import Header from './components/Header';
 
 const App = (): JSX.Element => {
   return (
-    <div>
+    <>
       <Router>
         <Header />
-        <Routes />
+        <div className='router-body'>
+          <Routes />
+        </div>
       </Router>
-    </div>
+    </>
   );
 };
 

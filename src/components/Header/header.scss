@@ -1,10 +1,42 @@
 @import '../../assets/styles/colors';
+@import '../../assets/styles/vars';
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: $color-red;
-  height: 7.5vh;
-  max-height: 5%;
+  background: $color-header;
+  height: $header-height;
+  padding: 0 6.5vw;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.29;
+  letter-spacing: 0.4px;
+  z-index: 999;
+  box-sizing: border-box;
+
+  &_logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &_name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: $color-black;
+  }
+}
+
+.icon-eagle {
+  width: 60px;
+  height: 90%;
 }

@@ -1,24 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import Icon from 'components/Icon';
 
 import './header.scss';
 
 const Header = (): JSX.Element => {
   return (
-    <div className="header">
-      <div>Header</div>
-      <div>
-        <ul>
-          <li>
-            <NavLink to={'/'} exact>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={'/edit'}>Edit</NavLink>
-          </li>
-        </ul>
-      </div>
+    <div className='header'>
+      <Link to='/' className='header_logo'>
+        <Icon name='eagle' />
+      </Link>
+      <Link to='/' className='header_name'>
+        Site Name
+      </Link>
     </div>
   );
 };
