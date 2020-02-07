@@ -6,5 +6,7 @@
   "printWidth": 80,
   "arrowParens": "always",
   "tabWidth": 2,
-  "quoteProps": "as-needed"
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": true,
+  "jsxBracketSameLine": false
 }
