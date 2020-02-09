@@ -1,11 +1,11 @@
 import React from 'react';
 
-import campaignsStore from 'store/posts';
+import postsStore from 'store/posts';
 
 import './edit.scss';
 
 const Edit = (): JSX.Element => {
-  const store = campaignsStore();
+  const store = postsStore();
   console.log(store);
   return (
     <div className='edit'>

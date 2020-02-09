@@ -14,6 +14,9 @@ const Header = (): JSX.Element => {
       <Link to='/' className='header_name'>
         RxJS State Management
       </Link>
+      <NavLink to='/login' className='header_edit'>
+        Login
+      </NavLink>
       <NavLink to='/edit' className='header_edit'>
         Edit
       </NavLink>

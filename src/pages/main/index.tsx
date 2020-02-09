@@ -1,12 +1,13 @@
 import React from 'react';
 
-import campaignsStore from 'store/posts';
+import postsStore from 'store/posts';
 import { getPosts } from '../../api/posts';
+import { postsActions } from 'store/posts/actions';
 
 import './main.scss';
 
 const Main = (): JSX.Element => {
-  const { posts } = campaignsStore();
+  const { posts } = postsStore();
 
   return (
     <div className='main'>
@@ -17,6 +18,13 @@ const Main = (): JSX.Element => {
         }}
       >
         GET POSTS
+      </button>
+      <button
+        onClick={() => {
+          postsActions.clearState();
+        }}
+      >
+        CLEAR STATE
       </button>
       <ul>
         {posts.map((post: string, i: number) => (
