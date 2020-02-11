@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Routes from './routes';
-import Header from './components/Header';
+import Routes from 'routes';
+import Header from 'components/Header';
+import mainStore from 'store/main';
 
 const App = (): JSX.Element => {
+  const { isLoading } = mainStore();
+
   return (
     <>
       <Router>
@@ -13,6 +16,7 @@ const App = (): JSX.Element => {
           <Routes />
         </div>
       </Router>
+      {isLoading && <div>LOADING COMPONENT</div>}
     </>
   );
 };
