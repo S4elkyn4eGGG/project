@@ -1,17 +1,17 @@
 import { BehaviorSubject } from 'rxjs';
 import { useEffect, useState } from 'react';
 
-import { IPostsState } from './model';
+import { IMainState } from './model';
 
-export const initialState: IPostsState = {
-  posts: [],
+export const initialState: IMainState = {
+  isLoading: false,
 };
 
-export let _state: IPostsState = initialState;
+export let _state: IMainState = initialState;
 
-const store$ = new BehaviorSubject<IPostsState>(_state);
+const store$ = new BehaviorSubject<IMainState>(_state);
 
-export const updateState = (state: IPostsState) => {
+export const updateState = (state: IMainState) => {
   store$.next((_state = state));
 };
 

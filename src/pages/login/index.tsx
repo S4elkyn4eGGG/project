@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import useForm from 'utils/useForm';
+import useForm from 'effects/useForm';
 import { loginValidator } from 'validators/loginValidator';
 import firebase from 'api/firebase';
 
@@ -10,7 +10,10 @@ const INITIAL_STATE = {
   password: '',
 };
 
-const Login = () => {
+const Login = (props: any) => {
+  const fromLocation: Location =
+    props.location.state && props.location.state.from;
+
   const {
     values,
     errors,
@@ -24,12 +27,14 @@ const Login = () => {
 
   const loginRegisterFunc = async () => {
     const { name, password, email } = values;
-    debugger;
-    const response = login
+
+    login
       ? await firebase.login(email, password)
       : await firebase.register(name, email, password);
 
-    console.log({ response });
+    if (login && fromLocation) {
+      props.history.push(fromLocation.pathname);
+    }
   };
 
   return (
