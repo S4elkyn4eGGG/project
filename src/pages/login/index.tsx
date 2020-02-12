@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
+
+import { mainActions } from 'store/main/actions';
+import { postsActions } from 'store/posts/actions';
 
 import useForm from 'effects/useForm';
 import { loginValidator } from 'validators/loginValidator';
-import { mainActions } from 'store/main/actions';
-import firebase from 'api/firebase';
-import { postsActions } from '../../store/posts/actions';
+
+import firebaseModule from 'api/firebase';
+
+import Input from 'components/Input';
+import Label from 'components/Label';
+import ErrorLabel from 'components/ErrorLabel';
+import Button from 'components/Button';
 
 import './login.scss';
 
@@ -22,7 +29,7 @@ const Login = (props: any) => {
     postsActions.clearState();
 
     if (!fromLocation) {
-      firebase.logOut();
+      firebaseModule.logOut();
     }
   }, [fromLocation]);
 
@@ -32,91 +39,100 @@ const Login = (props: any) => {
     handleChange,
     handleBlur,
     handleSubmit,
+    handleInput,
     clearErrors,
   } = useForm(INITIAL_STATE, loginValidator);
 
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState<boolean>(true);
+  const [respErrors, setRespErrors] = useState<string>('');
+
+  const isErrors = Boolean(Object.keys(errors).length);
 
   const loginRegisterFunc = async () => {
     mainActions.updateLoading(true);
 
     const { name, password, email } = values;
 
-    login
-      ? await firebase.login(email, password)
-      : await firebase.register(name, email, password);
+    try {
+      login
+        ? await firebaseModule.login(email, password)
+        : await firebaseModule.register(name, email, password);
 
-    mainActions.updateLoading(false);
+      mainActions.updateLoading(false);
 
-    if (login && fromLocation) {
-      props.history.push(fromLocation.pathname);
-    } else {
-      props.history.push('/');
+      props.history.push(login && fromLocation ? fromLocation.pathname : '/');
+    } catch (err) {
+      setRespErrors(err.message);
+      mainActions.updateLoading(false);
     }
   };
 
+  const changeForm = (): void => {
+    setLogin(!login);
+    setRespErrors('');
+    clearErrors();
+  };
+
+  const onSubmit = (event: SyntheticEvent): void => {
+    event.preventDefault();
+
+    handleBlur();
+    onSubmitClick();
+  };
+
+  const onSubmitClick = (): void => {
+    handleSubmit(loginRegisterFunc);
+  };
+
   return (
-    <div className='login'>
-      <div className={`login_form  login_form__${login ? 'auth' : 'registr'}`}>
+    <form className='login' onSubmit={onSubmit}>
+      <div className={`login_form  login_form__${login ? 'auth' : 'register'}`}>
         <div className='login_form__title'>
           {login ? 'Authorization' : 'Registration'}
         </div>
         {!login && (
-          <input
-            className='login_form__input'
-            name={'name'}
+          <Input
+            name='name'
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder={'Name'}
-            autoComplete={'off'}
+            onInput={handleInput}
+            placeholder='Name'
+            error={errors.name}
           />
         )}
-        {!login && errors.name && (
-          <div className='login_form__error'>{errors.name}</div>
-        )}
-        <input
-          className='login_form__input'
-          name={'email'}
+        <Input
+          name='email'
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder={'Email'}
-          autoComplete={'off'}
+          onInput={handleInput}
+          placeholder='Email'
+          error={errors.email}
         />
-        {errors.email && (
-          <div className='login_form__error'>{errors.email}</div>
-        )}
-        <input
-          className='login_form__input'
-          name={'password'}
+        <Input
+          name='password'
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder={'Password'}
-          autoComplete={'off'}
+          onInput={handleInput}
+          placeholder='Password'
+          error={errors.password}
           type='password'
         />
-        {errors.password && (
-          <div className='login_form__error'>{errors.password}</div>
-        )}
-        <div
-          className='login_form__button'
-          onClick={(): void => handleSubmit(loginRegisterFunc)}
-        >
-          {login ? 'Sign In' : 'Sign up'}
-        </div>
-        <div
-          className='login_form__label'
-          onClick={() => {
-            setLogin(!login);
-            clearErrors();
-          }}
-        >
-          {login ? 'Create new account' : 'Back to Login'}
-        </div>
+        <Button
+          text={login ? 'Sign In' : 'Sign up'}
+          onClick={onSubmitClick}
+          disabled={isErrors}
+          submit={true}
+        />
+        <ErrorLabel text={respErrors} />
+        <Label
+          text={login ? 'Create new account' : 'Back to Login'}
+          onClick={changeForm}
+        />
       </div>
-    </div>
+    </form>
   );
 };
 

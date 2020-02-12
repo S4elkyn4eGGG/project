@@ -22,6 +22,14 @@ export default (
     setErrors(formErrors);
   }
 
+  function handleInput(): void {
+    const formErrors = validate(values);
+
+    if (!Object.keys(formErrors).length) {
+      setErrors(formErrors);
+    }
+  }
+
   function handleSubmit(submitFunc: any, event?: SyntheticEvent): void {
     event && event.preventDefault();
 
@@ -41,5 +49,6 @@ export default (
     handleSubmit,
     handleBlur,
     clearErrors,
+    handleInput,
   };
 };
