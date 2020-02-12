@@ -1,0 +1,12 @@
+@import '../../assets/styles/colors';
+
+.project_label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: $color-blue;
+  cursor: pointer;
+  margin-top: 5px;
+}

@@ -1,13 +1,10 @@
 import React from 'react';
 
+import { IIconProps } from 'models/ui.model';
+
 import icons from 'assets/sprite.svg';
 
-export interface IIcon {
-  children?: any;
-  name: string;
-}
-
-const Icon = ({ name }: IIcon): JSX.Element => {
+const Icon = ({ name }: IIconProps): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

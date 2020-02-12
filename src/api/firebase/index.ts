@@ -32,6 +32,6 @@ class Firebase {
   }
 }
 
-const firebase = new Firebase();
+const firebaseModule = new Firebase();
 
-export default firebase;
+export default firebaseModule;
