@@ -22,7 +22,7 @@ export interface IProtectedRouteProps {
   strict?: boolean;
 }
 
-const ProtectedRoute = ({
+const ProtectedRoute: any = ({
   component: Component,
   ...rest
 }: IProtectedRouteProps) => {
@@ -31,7 +31,7 @@ const ProtectedRoute = ({
   return (
     <Route
       {...rest}
-      render={(props: IProtectedRouteProps) => {
+      render={(props: IProtectedRouteProps): JSX.Element | null => {
         const redirectConfig = {
           pathname: '/login',
           state: {
@@ -40,7 +40,7 @@ const ProtectedRoute = ({
         };
 
         if (!userResponse) {
-          return <div>LOADING COMPONENT</div>;
+          return null;
         }
 
         return user ? (

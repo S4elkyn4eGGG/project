@@ -5,22 +5,23 @@ import { IMainState } from './model';
 
 export const initialState: IMainState = {
   isLoading: false,
+  userName: null,
 };
 
 export let _state: IMainState = initialState;
 
 const store$ = new BehaviorSubject<IMainState>(_state);
 
-export const updateState = (state: IMainState) => {
+export const updateState = (state: IMainState): void => {
   store$.next((_state = state));
 };
 
-export default () => {
+export default (): IMainState => {
   const [state, setState] = useState(_state);
 
   useEffect(() => {
     const sub = store$.subscribe(setState);
-    return () => sub.unsubscribe();
+    return (): void => sub.unsubscribe();
   }, []);
 
   return state;

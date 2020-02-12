@@ -26,6 +26,10 @@ class Firebase {
   public async login(email: string, password: string) {
     return await this.auth.signInWithEmailAndPassword(email, password);
   }
+
+  public logOut(): void {
+    this.auth.signOut();
+  }
 }
 
 const firebase = new Firebase();
