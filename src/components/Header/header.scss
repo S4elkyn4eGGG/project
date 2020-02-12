@@ -3,11 +3,10 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: $color-blue;
+  justify-content: center;
+  background: $color-loader-background;
   height: $header-height;
-  padding: 0 6.5vw;
   width: 100%;
   position: fixed;
   top: 0;
@@ -20,10 +19,15 @@
   letter-spacing: 0.4px;
   z-index: 999;
   box-sizing: border-box;
+  color: $color-white;
+  box-shadow: 0 0 15px black;
 
   &_logo {
+    position: absolute;
+    left: 6.5vw;
     height: 100%;
     display: flex;
+    fill: $color-white;
     align-items: center;
   }
 
@@ -32,17 +36,33 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     text-decoration: none;
-    color: $color-black;
+    color: $color-white;
+    text-shadow: 1px 1px 4px;
+    flex: 1;
+    text-align: center;
   }
 
-  &_edit {
+  &_user {
+    position: absolute;
+    right: 3vw;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 4px;
+  }
+
+  &_login {
+    margin-left: 5px;
     text-decoration: none;
-    color: $color-black;
-    font-size: 1.5rem;
+    color: $color-white;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 4px;
   }
 }
 
-.icon-rxjs {
+.icon-wings {
   width: 60px;
   height: 90%;
 }

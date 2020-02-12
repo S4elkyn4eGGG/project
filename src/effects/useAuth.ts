@@ -1,13 +1,10 @@
-import firebase from '../api/firebase';
+import firebase from 'api/firebase';
 import { useEffect, useState } from 'react';
 
-export interface IAuth {
-  userResponse: boolean;
-  user: firebase.User | null;
-}
+import { IHAuth } from 'models/hooks.model';
 
-const useAuth = () => {
-  const [authUser, setAuthUser] = useState<IAuth>({
+const useAuth = (): IHAuth => {
+  const [authUser, setAuthUser] = useState<IHAuth>({
     userResponse: false,
     user: null,
   });
@@ -22,7 +19,7 @@ const useAuth = () => {
       }
     );
 
-    return () => user$();
+    return (): void => user$();
   }, []);
 
   return authUser;

@@ -1,14 +1,5 @@
-@import "assets/styles/vars";
-
-::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-}
-
-html {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+@import 'assets/styles/vars';
+@import 'assets/styles/colors';
 
 body {
   margin: 0;
@@ -27,6 +18,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 10px;
+  background: $color-body-background;
 }
 
 code {

@@ -5,21 +5,23 @@ import Icon from 'components/Icon';
 
 import './header.scss';
 
-const Header = (): JSX.Element => {
+const Header = ({ authState }: any): JSX.Element => {
   return (
     <div className='header'>
       <Link to='/' className='header_logo'>
-        <Icon name='rxjs' />
+        <Icon name='wings' />
       </Link>
       <Link to='/' className='header_name'>
         RxJS State Management
       </Link>
-      <NavLink to='/login' className='header_edit'>
-        Login
-      </NavLink>
-      <NavLink to='/edit' className='header_edit'>
-        Edit
-      </NavLink>
+      {authState.userResponse && (
+        <div className='header_user'>
+          {authState.user && <div>{authState.user.displayName} |</div>}
+          <NavLink className='header_login' to='/login'>
+            {authState.user ? 'Log out' : 'Log in'}
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 };

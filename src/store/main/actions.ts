@@ -9,4 +9,10 @@ export const mainActions: IPostsActions = {
       isLoading,
     });
   },
+  updateUser: (userName: string | null) => {
+    updateState({
+      ..._state,
+      userName,
+    });
+  },
 };

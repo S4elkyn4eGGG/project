@@ -13,14 +13,14 @@ const Main = (): JSX.Element => {
     <div className='main'>
       Main
       <button
-        onClick={() => {
+        onClick={(): void => {
           getPosts();
         }}
       >
         GET POSTS
       </button>
       <button
-        onClick={() => {
+        onClick={(): void => {
           postsActions.clearState();
         }}
       >
