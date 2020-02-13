@@ -10,7 +10,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
   background: $color-green;
   color: $color-white;
   user-select: none;
@@ -18,7 +17,7 @@
   &__disabled {
     user-select: none;
     cursor: auto;
-    pointer-events:none;
+    pointer-events: none;
     background: $color-grey75;
     color: $color-grey;
   }

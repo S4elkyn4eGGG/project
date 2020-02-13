@@ -4,31 +4,41 @@ import 'firebase/auth';
 import firebaseConfig from './config';
 
 class Firebase {
-  public auth: firebase.auth.Auth;
+  public auth: app.auth.Auth;
 
   constructor() {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
   }
 
-  public async register(name: string, email: string, password: string) {
+  public async register(
+    name: string,
+    email: string,
+    password: string
+  ): Promise<void> {
     const newUser = await this.auth.createUserWithEmailAndPassword(
       email,
       password
     );
 
-    // @ts-ignore
-    return await newUser.user.updateProfile({
+    await newUser.user?.updateProfile({
       displayName: name,
     });
   }
 
-  public async login(email: string, password: string) {
+  public async login(
+    email: string,
+    password: string
+  ): Promise<app.auth.UserCredential> {
     return await this.auth.signInWithEmailAndPassword(email, password);
   }
 
-  public logOut(): void {
-    this.auth.signOut();
+  public async logOut(): Promise<void> {
+    await this.auth.signOut();
+  }
+
+  public async resetPassword(email: string): Promise<void> {
+    await this.auth.sendPasswordResetEmail(email);
   }
 }
 

@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import * as H from 'history';
 
-import useAuth from 'effects/useAuth';
+import useAuth from 'hooks/useAuth';
 
 export interface IProtectedRouteProps {
   location?: H.Location;

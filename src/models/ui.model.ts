@@ -2,7 +2,7 @@ import { BaseSyntheticEvent, SyntheticEvent } from 'react';
 
 export interface ILabelProps {
   text: string;
-  onClick: (event: BaseSyntheticEvent) => void;
+  onClick?: (event: BaseSyntheticEvent) => void;
 }
 
 export interface IInputProps {
@@ -11,6 +11,8 @@ export interface IInputProps {
   placeholder?: string;
   error?: string;
   type?: string;
+  className?: string;
+  style?: any;
   onChange?: (event: BaseSyntheticEvent) => void;
   onBlur?: (event: BaseSyntheticEvent) => void;
   onInput?: (event: BaseSyntheticEvent) => void;
@@ -27,7 +29,8 @@ export interface IErrorLabelProps {
 
 export interface IButtonProps {
   text: string;
-  onClick: (event: SyntheticEvent) => void;
+  onClick?: (event: SyntheticEvent) => void;
   disabled?: boolean;
   submit?: boolean;
+  className?: string;
 }

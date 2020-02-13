@@ -12,14 +12,17 @@ const Input = ({
   placeholder = '',
   error = '',
   type = 'text',
-  onChange = () => {},
-  onBlur = () => {},
-  onInput = () => {},
+  className = '',
+  style = {},
+  onChange = (): any => {},
+  onBlur = (): any => {},
+  onInput = (): any => {},
 }: IInputProps): JSX.Element => {
   return (
     <div>
       <input
-        className='project_input'
+        className={`project_input ${className}`}
+        style={style}
         name={name}
         value={value}
         onChange={onChange}
