@@ -13,7 +13,7 @@ export default (
 
     setValues({
       ...values,
-      [event.name || event.target.name]: event.value || event.target.value,
+      [event.name || event.target.name]: event.value || event.target?.value,
     });
   }
 
@@ -31,7 +31,7 @@ export default (
   }
 
   function handleSubmit(submitFunc: any, event?: SyntheticEvent): void {
-    event && event.preventDefault();
+    event?.preventDefault();
 
     const formErrors = validate(values);
 

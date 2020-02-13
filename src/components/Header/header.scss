@@ -2,6 +2,7 @@
 @import '../../assets/styles/vars';
 
 .header {
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +26,7 @@
   &_logo {
     position: absolute;
     left: 6.5vw;
-    height: 100%;
+    height: 90%;
     display: flex;
     fill: $color-white;
     align-items: center;
@@ -40,6 +41,10 @@
     text-shadow: 1px 1px 4px;
     flex: 1;
     text-align: center;
+
+    @media screen and (max-width: 650px) {
+      display: none;
+    }
   }
 
   &_user {
@@ -51,6 +56,7 @@
     align-items: center;
     font-size: 1.1rem;
     text-shadow: 1px 1px 4px;
+    user-select: none;
   }
 
   &_login {

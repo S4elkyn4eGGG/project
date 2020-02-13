@@ -3,7 +3,7 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { mainActions } from 'store/main/actions';
 import { postsActions } from 'store/posts/actions';
 
-import useForm from 'effects/useForm';
+import useForm from 'hooks/useForm';
 import { loginValidator } from 'validators/loginValidator';
 
 import firebaseModule from 'api/firebase';
@@ -14,6 +14,7 @@ import ErrorLabel from 'components/ErrorLabel';
 import Button from 'components/Button';
 
 import './login.scss';
+import { Link } from 'react-router-dom';
 
 const INITIAL_STATE = {
   name: '',
@@ -21,7 +22,7 @@ const INITIAL_STATE = {
   password: '',
 };
 
-const Login = (props: any) => {
+const Login = (props: any): JSX.Element => {
   const fromLocation: Location =
     props.location.state && props.location.state.from;
 
@@ -33,6 +34,10 @@ const Login = (props: any) => {
     }
   }, [fromLocation]);
 
+  const [login, setLogin] = useState<boolean>(true);
+  const [respErrors, setRespErrors] = useState<string>('');
+  const [validFields, setValidFields] = useState(['email', 'password']);
+
   const {
     values,
     errors,
@@ -41,14 +46,15 @@ const Login = (props: any) => {
     handleSubmit,
     handleInput,
     clearErrors,
-  } = useForm(INITIAL_STATE, loginValidator);
+  } = useForm(INITIAL_STATE, loginValidator(validFields));
 
-  const [login, setLogin] = useState<boolean>(true);
-  const [respErrors, setRespErrors] = useState<string>('');
+  useEffect(() => {
+    setRespErrors('');
+  }, [values]);
 
   const isErrors = Boolean(Object.keys(errors).length);
 
-  const loginRegisterFunc = async () => {
+  const loginRegisterFunc = async (): Promise<void> => {
     mainActions.updateLoading(true);
 
     const { name, password, email } = values;
@@ -60,7 +66,7 @@ const Login = (props: any) => {
 
       mainActions.updateLoading(false);
 
-      props.history.push(login && fromLocation ? fromLocation.pathname : '/');
+      props.history.push((login && fromLocation?.pathname) || '/');
     } catch (err) {
       setRespErrors(err.message);
       mainActions.updateLoading(false);
@@ -68,9 +74,16 @@ const Login = (props: any) => {
   };
 
   const changeForm = (): void => {
+    setValidFields(
+      login ? ['name', 'email', 'password'] : ['email', 'password']
+    );
     setLogin(!login);
     setRespErrors('');
     clearErrors();
+  };
+
+  const onSubmitClick = (): void => {
+    handleSubmit(loginRegisterFunc);
   };
 
   const onSubmit = (event: SyntheticEvent): void => {
@@ -80,14 +93,14 @@ const Login = (props: any) => {
     onSubmitClick();
   };
 
-  const onSubmitClick = (): void => {
-    handleSubmit(loginRegisterFunc);
-  };
-
   return (
-    <form className='login' onSubmit={onSubmit}>
-      <div className={`login_form  login_form__${login ? 'auth' : 'register'}`}>
-        <div className='login_form__title'>
+    <form className='project-login' onSubmit={onSubmit}>
+      <div
+        className={`project-panel login_panel login_${
+          login ? 'auth' : 'register'
+        }`}
+      >
+        <div className='project-login_title'>
           {login ? 'Authorization' : 'Registration'}
         </div>
         {!login && (
@@ -121,7 +134,7 @@ const Login = (props: any) => {
           type='password'
         />
         <Button
-          text={login ? 'Sign In' : 'Sign up'}
+          text={login ? 'Sign In' : 'Sign Up'}
           onClick={onSubmitClick}
           disabled={isErrors}
           submit={true}
@@ -131,6 +144,9 @@ const Login = (props: any) => {
           text={login ? 'Create new account' : 'Back to Login'}
           onClick={changeForm}
         />
+        <Link className={'link'} to={'/reset-password'}>
+          <Label text={'Forgot your password ?'} onClick={changeForm} />
+        </Link>
       </div>
     </form>
   );
