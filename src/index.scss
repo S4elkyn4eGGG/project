@@ -3,6 +3,22 @@
 @import 'assets/styles/colors';
 @import 'assets/styles/global';
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-grey10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-grey75;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $color-grey;
+}
+
 body {
   margin: 0;
   font-family:
@@ -21,6 +37,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 10px;
   background: $color-body-background;
+  overflow-x: hidden;
 }
 
 code {

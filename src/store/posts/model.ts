@@ -1,8 +1,8 @@
 export interface IPostsState {
-  posts: string[];
+  posts: any[];
 }
 
 export interface IPostsActions {
-  updatePosts: (posts: string[]) => void;
+  updatePosts: (posts: any[]) => void;
   clearState: () => void;
 }

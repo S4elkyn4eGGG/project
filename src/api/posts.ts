@@ -1,4 +1,4 @@
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { get } from './index';
 import { postsActions } from 'store/posts/actions';
@@ -8,11 +8,8 @@ export const getPosts: () => void = (): void => {
   mainActions.updateLoading(true);
 
   get('https://jsonplaceholder.typicode.com/posts')
-    .pipe(
-      tap(() => mainActions.updateLoading(false)),
-      map((posts): string[] => (posts as any[]).map((post) => post.title))
-    )
-    .subscribe((posts: string[]): void => {
+    .pipe(tap(() => mainActions.updateLoading(false)))
+    .subscribe((posts: any[]): void => {
       postsActions.updatePosts(posts);
     });
 };

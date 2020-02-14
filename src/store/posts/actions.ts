@@ -3,7 +3,7 @@ import { updateState, _state, initialState } from './index';
 import { IPostsActions } from './model';
 
 export const postsActions: IPostsActions = {
-  updatePosts: (posts: string[]) => {
+  updatePosts: (posts: any[]) => {
     updateState({
       ..._state,
       posts,

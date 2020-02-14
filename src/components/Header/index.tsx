@@ -21,7 +21,9 @@ const Header = ({ authState }: any): JSX.Element => {
       </Link>
       {!isLogin && authState.userResponse && (
         <div className='header_user'>
-          {authState.user && <div>{authState.user.displayName} |</div>}
+          <NavLink className='header_login' to='/admin'>
+            {authState.user && <div>{authState.user.displayName} |</div>}
+          </NavLink>
           <NavLink className='header_login' to='/login'>
             {authState.user ? 'Log out' : 'Log in'}
           </NavLink>
