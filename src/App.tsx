@@ -17,9 +17,7 @@ const App = (): JSX.Element => {
     <>
       <Router>
         <Header authState={authState} />
-        <div className='router-body'>
-          <Routes />
-        </div>
+        <Routes />
       </Router>
       {isLoading && <Loader />}
     </>
