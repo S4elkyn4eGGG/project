@@ -1,4 +1,4 @@
-import firebase from 'api/firebase';
+import firebaseModule from 'api/firebase';
 import { useEffect, useState } from 'react';
 
 import { IHAuth } from 'models/hooks.model';
@@ -10,7 +10,7 @@ const useAuth = (): IHAuth => {
   });
 
   useEffect(() => {
-    const user$ = firebase.auth.onAuthStateChanged(
+    const user$ = firebaseModule.auth.onAuthStateChanged(
       (user: firebase.User | null) => {
         setAuthUser({
           userResponse: true,

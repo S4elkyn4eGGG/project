@@ -5,6 +5,7 @@ import { IPostsState } from './model';
 
 export const initialState: IPostsState = {
   posts: [],
+  editPost: null,
 };
 
 export let _state: IPostsState = initialState;
