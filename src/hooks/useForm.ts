@@ -23,6 +23,7 @@ export default (
   }
 
   function handleInput(): void {
+    debugger;
     const formErrors = validate(values);
 
     if (!Object.keys(formErrors).length) {
@@ -42,6 +43,10 @@ export default (
     setErrors({});
   }
 
+  function updateValues(values: any): void {
+    setValues(values);
+  }
+
   return {
     values,
     errors,
@@ -50,5 +55,6 @@ export default (
     handleBlur,
     clearErrors,
     handleInput,
+    updateValues,
   };
 };

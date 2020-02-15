@@ -43,7 +43,7 @@ export default (): any => {
         <Suspense fallback={<div>...</div>}>
           <Switch>
             <ProtectedRoute path='/' component={Main} exact />
-            <ProtectedRoute path='/edit' component={Edit} />
+            <ProtectedRoute path='/edit/:id' component={Edit} exact />
             <ProtectedRoute path='/admin' component={Admin} />
             <Route path='/login' component={Login} />
             <Route path='/reset-password' component={ResetPassword} />

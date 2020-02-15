@@ -12,6 +12,8 @@ import Input from 'components/Input';
 import Label from 'components/Label';
 import ErrorLabel from 'components/ErrorLabel';
 import Button from 'components/Button';
+import Panel from 'components/Panel';
+import Title from 'components/Title';
 
 import './login.scss';
 import { Link } from 'react-router-dom';
@@ -95,14 +97,8 @@ const Login = (props: any): JSX.Element => {
 
   return (
     <form className='project-login' onSubmit={onSubmit}>
-      <div
-        className={`project-panel login_panel login_${
-          login ? 'auth' : 'register'
-        }`}
-      >
-        <div className='project-login_title'>
-          {login ? 'Authorization' : 'Registration'}
-        </div>
+      <Panel className={`login_panel login_${login ? 'auth' : 'register'}`}>
+        <Title text={login ? 'Authorization' : 'Registration'} />
         {!login && (
           <Input
             name='name'
@@ -147,7 +143,7 @@ const Login = (props: any): JSX.Element => {
         <Link className={'link'} to={'/reset-password'}>
           <Label text={'Forgot your password ?'} onClick={changeForm} />
         </Link>
-      </div>
+      </Panel>
     </form>
   );
 };

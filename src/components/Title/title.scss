@@ -1,0 +1,11 @@
+@import '../../assets/styles/colors';
+
+.project-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: $color-grey;
+  font-family: 'Quattrocento Sans', sans-serif;
+}

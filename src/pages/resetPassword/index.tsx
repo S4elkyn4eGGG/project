@@ -9,6 +9,7 @@ import Label from 'components/Label';
 
 import './resetPassword.scss';
 import { Link } from 'react-router-dom';
+import Panel from '../../components/Panel';
 
 const ResetPassword = (): JSX.Element => {
   const [email, setEmail] = useState('');
@@ -30,9 +31,13 @@ const ResetPassword = (): JSX.Element => {
     setEmail(event.target.value);
   };
 
+  const onSubmitClick = (event: BaseSyntheticEvent): void => {
+    onSubmit(event);
+  };
+
   return (
     <form className='project-login' onSubmit={onSubmit}>
-      <div className={'project-panel'}>
+      <Panel>
         <div className='project-login_title reset-password_title'>
           Reset Password
         </div>
@@ -42,12 +47,13 @@ const ResetPassword = (): JSX.Element => {
           text={'Reset'}
           submit={true}
           className={'reset-password_button'}
+          onClick={onSubmitClick}
         />
         <Link className={'link'} to={'/login'}>
           <Label text={'Back to login'} />
         </Link>
-        {isSuccess && <Label text={'Please, check you email'} />}
-      </div>
+        {isSuccess && <Label text={'Please, check your email'} />}
+      </Panel>
     </form>
   );
 };

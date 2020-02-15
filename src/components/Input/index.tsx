@@ -17,21 +17,36 @@ const Input = ({
   onChange = (): any => {},
   onBlur = (): any => {},
   onInput = (): any => {},
+  textarea = false,
 }: IInputProps): JSX.Element => {
   return (
     <div>
-      <input
-        className={`project_input ${className}`}
-        style={style}
-        name={name}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        onInput={onInput}
-        placeholder={placeholder}
-        autoComplete='off'
-        type={type}
-      />
+      {textarea ? (
+        <textarea
+          className={`project_input ${className} project_input_textarea`}
+          style={style}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          onInput={onInput}
+          placeholder={placeholder}
+          autoComplete='off'
+        />
+      ) : (
+        <input
+          className={`project_input ${className}`}
+          style={style}
+          name={name}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          onInput={onInput}
+          placeholder={placeholder}
+          autoComplete='off'
+          type={type}
+        />
+      )}
       <ErrorLabel text={error} />
     </div>
   );
