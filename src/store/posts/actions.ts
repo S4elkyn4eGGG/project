@@ -9,6 +9,12 @@ export const postsActions: IPostsActions = {
       posts,
     });
   },
+  updateEditPost: (editPost: any) => {
+    updateState({
+      ..._state,
+      editPost,
+    });
+  },
   clearState: () => {
     updateState(initialState);
   },
