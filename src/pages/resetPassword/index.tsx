@@ -2,14 +2,16 @@ import React, { BaseSyntheticEvent, useState } from 'react';
 
 import firebaseModule from 'api/firebase';
 
+import { Link } from 'react-router-dom';
+
 import Input from 'components/Input';
 import Button from 'components/Button';
 import ErrorLabel from 'components/ErrorLabel';
 import Label from 'components/Label';
+import Panel from 'components/Panel';
+import Title from 'components/Title';
 
 import './resetPassword.scss';
-import { Link } from 'react-router-dom';
-import Panel from '../../components/Panel';
 
 const ResetPassword = (): JSX.Element => {
   const [email, setEmail] = useState('');
@@ -38,9 +40,7 @@ const ResetPassword = (): JSX.Element => {
   return (
     <form className='project-login' onSubmit={onSubmit}>
       <Panel>
-        <div className='project-login_title reset-password_title'>
-          Reset Password
-        </div>
+        <Title text={'Reset Password'} className='reset-password_title' />
         <Input value={email} onChange={onChange} placeholder='Email' />
         {respError && <ErrorLabel text={respError} />}
         <Button
