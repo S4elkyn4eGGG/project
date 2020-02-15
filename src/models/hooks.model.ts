@@ -9,6 +9,7 @@ export interface IHUseFormModel {
   handleBlur: () => void;
   handleSubmit: (func: any, event?: SyntheticEvent) => void;
   clearErrors: () => void;
+  updateValues: (values: any) => void;
 }
 
 export interface IHAuth {

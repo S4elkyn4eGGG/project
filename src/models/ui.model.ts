@@ -13,6 +13,7 @@ export interface IInputProps {
   type?: string;
   className?: string;
   style?: any;
+  textarea?: boolean;
   onChange?: (event: BaseSyntheticEvent) => void;
   onBlur?: (event: BaseSyntheticEvent) => void;
   onInput?: (event: BaseSyntheticEvent) => void;
@@ -32,5 +33,10 @@ export interface IButtonProps {
   onClick?: (event: SyntheticEvent) => void;
   disabled?: boolean;
   submit?: boolean;
+  className?: string;
+}
+
+export interface ITitleProps {
+  text: string;
   className?: string;
 }
