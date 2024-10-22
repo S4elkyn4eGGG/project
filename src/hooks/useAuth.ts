@@ -19,6 +19,8 @@ const useAuth = (): IHAuth => {
       }
     );
 
+    console.log('sfaasf')
+
     return (): void => user$();
   }, []);
 
